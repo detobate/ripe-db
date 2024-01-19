@@ -101,19 +101,19 @@ def main():
     address_family = parser.add_argument_group('Address Families', 'Select which address families to display. '
                                                                    'At least one required.')
     address_family.add_argument('-4', dest='v4', action='store_true',
-                                default=False, help='IPv4 inetnum objects. [Default: False]')
+                                default=False, help='IPv4 inetnum objects.')
     address_family.add_argument('-6', dest='v6', action='store_true',
-                                default=False, help='IPv6 inet6num objects. [Default: False]')
+                                default=False, help='IPv6 inet6num objects.')
     status = parser.add_argument_group('Status', 'Select which inet[6]num objects to display. '
                                                  'At least one required.')
     status.add_argument('-A', action='store_true', default=False,
-                        help='Assigned inet[6]num objects. [Default: False]')
+                        help='Assigned inet[6]num objects.')
     status.add_argument('-a', action='store_true', default=False,
-                        help='Allocated inet[6]num objects. [Default: False]')
+                        help='Allocated inet[6]num objects.')
     status.add_argument('-s', action='store_true', default=False,
-                        help='Sub-Allocated inet[6]num objects. [Default: False]')
+                        help='Sub-Allocated inet[6]num objects.')
     status.add_argument('-l', action='store_true', default=False,
-                        help='Legacy inet[6]num objects. [Default: False]')
+                        help='Legacy inet[6]num objects.')
     args = parser.parse_args()
 
     if not (args.A or args.a or args.l):

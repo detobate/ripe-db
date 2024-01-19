@@ -20,14 +20,14 @@ options:
 Address Families:
   Select which address families to display. At least one required.
 
-  -4          IPv4 inetnum objects. [Default: False]
-  -6          IPv6 inet6num objects. [Default: False]
+  -4          IPv4 inetnum objects.
+  -6          IPv6 inet6num objects.
 
 Status:
   Select which inet[6]num objects to display. At least one required.
 
-  -A          Assigned inet[6]num objects. [Default: False]
-  -a          Allocated inet[6]num objects. [Default: False]
-  -s          Sub-Allocated inet[6]num objects. [Default: False]
-  -l          Legacy inet[6]num objects. [Default: False]
+  -A          Assigned inet[6]num objects.
+  -a          Allocated inet[6]num objects.
+  -s          Sub-Allocated inet[6]num objects.
+  -l          Legacy inet[6]num objects.
 ```
