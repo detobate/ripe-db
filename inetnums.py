@@ -24,7 +24,7 @@ def net4_to_cidr(net):
     endip = ipaddress.IPv4Address(end)
 
     try:
-        cidr = [ipaddr for ipaddr in ipaddress.summarize_address_range(startip, endip)]
+        cidr = [c.with_prefixlen for c in ipaddress.summarize_address_range(startip, endip)]
     except TypeError:
         print(f'Error: net:{net} start:{startip} end:{endip}')
 
@@ -34,7 +34,7 @@ def net4_to_cidr(net):
 def parse_inetnum_results(results, cidr, assigned, allocated, legacy, sub_allocated):
 
     if cidr:
-        print('cidr,netname,status,mnt-by')
+        print('inetnum,netname,status,mnt-by,CIDRs')
     else:
         print('inetnum,netname,status,mnt-by')
     try:
@@ -57,7 +57,7 @@ def parse_inetnum_results(results, cidr, assigned, allocated, legacy, sub_alloca
                 try:
                     if cidr:
                         c = net4_to_cidr(inetnum)
-                        print(f'{c[0]},{netname},{status},{mnt_by}')
+                        print(f'{inetnum},{netname},{status},{mnt_by},{c}')
                     else:
                         print(f'{inetnum},{netname},{status},{mnt_by}')
                 except NameError:
@@ -97,7 +97,7 @@ def main():
 
     parser = argparse.ArgumentParser(description='Query the RIPE Database for inet[6]num objects')
     parser.add_argument('orgs', metavar='<orgID>', help='LIR Org ID[s]', action='append', nargs='+')
-    parser.add_argument('-c', action='store_true', default=False, help='Output IPv4 CIDR notation')
+    parser.add_argument('-c', action='store_true', default=False, help='List IPv4 CIDRs belonging to the inetnum')
     address_family = parser.add_argument_group('Address Families', 'Select which address families to display. '
                                                                    'At least one required.')
     address_family.add_argument('-4', dest='v4', action='store_true',
